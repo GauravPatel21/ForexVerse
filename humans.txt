@@ -1,0 +1,10 @@
+/* TEAM */
+  Creator: ForexVerse AI
+  Tech: React, TypeScript, TailwindCSS
+  Site: https://forexverse.com
+
+/* THANKS */
+  Thanks to the Price Action trading community.
+
+/* PURPOSE */
+  To provide clean, noise-free forex education.

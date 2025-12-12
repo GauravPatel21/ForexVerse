@@ -18,8 +18,8 @@ const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  // Default professional fallback image
-  const fallbackSrc = 'https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&w=1200&q=80';
+  // Default professional fallback image (Verified Working)
+  const fallbackSrc = 'https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&w=1200&q=80';
 
   useEffect(() => {
     setImgSrc(src);

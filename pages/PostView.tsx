@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { POSTS } from '../data';
-import { ChevronLeftIcon } from '../components/Icons';
+import { ChevronLeftIcon, TwitterIcon, LinkedInIcon, FacebookIcon } from '../components/Icons';
 import FadeIn from '../components/FadeIn';
 import ImageWithFallback from '../components/ImageWithFallback';
 import Comments from '../components/Comments';
@@ -45,6 +45,26 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
     if (!email) return;
     setSubStatus('LOADING');
     setTimeout(() => { setSubStatus('SUCCESS'); setEmail(''); }, 1500);
+  };
+
+  const sharePost = (platform: 'twitter' | 'linkedin' | 'facebook') => {
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+    let url = '';
+    const text = encodeURIComponent(post?.title || '');
+    const currentUrl = encodeURIComponent(shareUrl);
+
+    switch(platform) {
+        case 'twitter':
+            url = `https://twitter.com/intent/tweet?text=${text}&url=${currentUrl}`;
+            break;
+        case 'linkedin':
+            url = `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`;
+            break;
+        case 'facebook':
+            url = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+            break;
+    }
+    window.open(url, '_blank', 'width=600,height=400');
   };
 
   // Formatting content with refined prose styles
@@ -139,11 +159,28 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
                 <h1 className="text-4xl md:text-6xl font-display font-extrabold text-brand-text mb-8 leading-[1.1] tracking-tight">
                     {post.title}
                 </h1>
-                <div className="flex items-center gap-4 py-6 border-y border-gray-200">
-                    <div className="w-12 h-12 rounded-full bg-brand-primary flex items-center justify-center text-white font-display font-bold">FV</div>
-                    <div>
-                        <div className="text-sm font-bold text-brand-text font-display">ForexVerse Team</div>
-                        <div className="text-xs text-brand-muted">{post.date} · {post.readTime}</div>
+                
+                {/* Author Info & Share Buttons */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 py-6 border-y border-gray-200">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-brand-primary flex items-center justify-center text-white font-display font-bold">FV</div>
+                        <div>
+                            <div className="text-sm font-bold text-brand-text font-display">ForexVerse Team</div>
+                            <div className="text-xs text-brand-muted">{post.date} · {post.readTime}</div>
+                        </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3">
+                        <span className="text-xs font-bold text-brand-muted uppercase tracking-wider mr-2 hidden sm:block">Share</span>
+                        <button onClick={() => sharePost('twitter')} className="p-2 rounded-full bg-white border border-gray-100 shadow-sm hover:bg-gray-50 text-brand-muted hover:text-[#1DA1F2] transition-colors" aria-label="Share on Twitter">
+                            <TwitterIcon className="w-5 h-5" />
+                        </button>
+                        <button onClick={() => sharePost('linkedin')} className="p-2 rounded-full bg-white border border-gray-100 shadow-sm hover:bg-gray-50 text-brand-muted hover:text-[#0A66C2] transition-colors" aria-label="Share on LinkedIn">
+                            <LinkedInIcon className="w-5 h-5" />
+                        </button>
+                        <button onClick={() => sharePost('facebook')} className="p-2 rounded-full bg-white border border-gray-100 shadow-sm hover:bg-gray-50 text-brand-muted hover:text-[#1877F2] transition-colors" aria-label="Share on Facebook">
+                            <FacebookIcon className="w-5 h-5" />
+                        </button>
                     </div>
                 </div>
             </div>

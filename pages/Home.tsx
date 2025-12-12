@@ -146,33 +146,54 @@ const Home: React.FC<HomeProps> = ({ onNavigate, sectionId }) => {
         </div>
       </section>
 
-      {/* FEATURED ANALYSIS */}
+      {/* FEATURED ANALYSIS - REDESIGNED: Magazine Layout */}
       <section className="py-24 px-6 bg-brand-bg">
         <div className="max-w-7xl mx-auto">
             <FadeIn>
-                <div className="relative rounded-3xl overflow-hidden bg-brand-primary text-white shadow-premium-lg">
-                    <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                    <div className="flex flex-col lg:flex-row">
-                        <div className="lg:w-1/2 p-12 lg:p-16 flex flex-col justify-center relative z-10">
-                            <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-xs font-bold uppercase tracking-wider mb-6 w-fit">Featured Insight</span>
-                            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">{featuredPost.title}</h2>
-                            <p className="text-blue-100 text-lg mb-8 leading-relaxed">
+                <div className="relative rounded-3xl overflow-hidden bg-brand-primary text-white shadow-2xl">
+                    {/* Abstract Texture */}
+                    <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+                    
+                    <div className="grid lg:grid-cols-12 gap-8 items-center p-8 lg:p-14 relative z-10">
+                        {/* Content Side (Larger) */}
+                        <div className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-1">
+                            <div className="flex items-center gap-3 mb-6">
+                              <span className="py-1.5 px-3.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider border border-white/20 backdrop-blur-sm shadow-sm">
+                                  Featured Analysis
+                              </span>
+                              <span className="text-blue-200/70 text-sm font-medium">
+                                  {featuredPost.date}
+                              </span>
+                            </div>
+                            
+                            <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 leading-[1.1] tracking-tight text-white">
+                                {featuredPost.title}
+                            </h2>
+                            
+                            <p className="text-blue-100 text-lg mb-8 leading-relaxed max-w-xl opacity-90 font-light border-l-2 border-white/20 pl-6">
                                 {featuredPost.excerpt}
                             </p>
-                            <button 
-                                onClick={() => onNavigate('POST', { id: featuredPost.id })}
-                                className="w-fit px-8 py-3.5 bg-white text-brand-primary font-bold rounded-xl hover:bg-blue-50 transition-colors"
-                            >
-                                Read Analysis
-                            </button>
+                            
+                            <div className="flex flex-wrap gap-4">
+                                <button 
+                                    onClick={() => onNavigate('POST', { id: featuredPost.id })}
+                                    className="px-8 py-3.5 bg-white text-brand-primary font-bold rounded-xl hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2"
+                                >
+                                    Read Analysis <ArrowRightIcon className="w-4 h-4" />
+                                </button>
+                            </div>
                         </div>
-                        <div className="lg:w-1/2 min-h-[400px] relative">
-                             <div className="absolute inset-0 bg-gradient-to-t from-brand-primary to-transparent lg:bg-gradient-to-l z-10"></div>
-                             <ImageWithFallback
-                                src={featuredPost.imageUrl} 
-                                alt={featuredPost.title} 
-                                className="w-full h-full object-cover"
-                            />
+
+                        {/* Image Side (Compact & Designed) */}
+                        <div className="lg:col-span-5 relative order-1 lg:order-2 mb-8 lg:mb-0">
+                             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 aspect-[4/3] lg:aspect-[4/3] w-full max-w-md mx-auto relative group">
+                                 <div className="absolute inset-0 bg-brand-primary/10 group-hover:bg-transparent transition-colors z-10"></div>
+                                 <ImageWithFallback
+                                    src={featuredPost.imageUrl} 
+                                    alt={featuredPost.title} 
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                                />
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -201,7 +222,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, sectionId }) => {
                             onClick={() => onNavigate('POST', { id: post.id })}
                             className="group cursor-pointer flex flex-col h-full"
                         >
-                            <div className="aspect-[16/10] overflow-hidden rounded-2xl mb-6 relative shadow-premium-sm">
+                            <div className="aspect-[16/10] overflow-hidden rounded-2xl mb-6 relative shadow-premium-sm border border-gray-100">
                                 <ImageWithFallback 
                                     src={post.imageUrl} 
                                     alt={post.title} 

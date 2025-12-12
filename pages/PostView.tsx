@@ -148,11 +148,11 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
                 </div>
             </div>
 
-            {/* Featured Image */}
+            {/* Featured Image - Optimized Size */}
             <ImageWithFallback 
                 src={post.imageUrl} 
                 alt={post.title} 
-                className="w-full h-auto rounded-2xl shadow-premium-md mb-16"
+                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-premium-md mb-12"
             />
 
             {/* Content Body */}

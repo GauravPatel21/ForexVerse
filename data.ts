@@ -1,6 +1,6 @@
 import { Post, LegalDoc } from './types';
 
-// NOTE: Using direct Unsplash URLs to ensure images load correctly without local file dependencies.
+// NOTE: Using updated direct Unsplash URLs to ensure images load correctly.
 
 export const POSTS: Post[] = [
   {
@@ -10,7 +10,7 @@ export const POSTS: Post[] = [
     date: 'Jan 05, 2025',
     readTime: '7 min read',
     tags: ['Price Action', 'Fundamentals'],
-    imageUrl: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&w=1200&q=80', 
+    imageUrl: 'https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&w=1200&q=80', 
     content: `
 ## Introduction
 Price action is the discipline of making trading decisions based on the raw movement of price, rather than lagging indicators. It is the language of the market, reflecting the aggregate psychology and order flow of all participants at any given moment.
@@ -149,7 +149,7 @@ Liquidity drives the market. By thinking like an institution rather than a retai
     date: 'Jan 18, 2025',
     readTime: '5 min read',
     tags: ['Sessions', 'Timing'],
-    imageUrl: 'https://images.unsplash.com/photo-1508962914670-32992875c47f?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1495364141860-b0d03ecc005c?auto=format&fit=crop&w=1200&q=80',
     content: `
 ## Introduction
 The Forex market operates 24 hours a day, but volatility is not distributed equally. Trading during low-volume hours results in erratic price action, wide spreads, and low probability setups. Professional traders operate when the money is moving.

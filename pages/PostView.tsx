@@ -83,10 +83,11 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
           return (
               <div key={idx} className="my-10 flex flex-col items-center">
                   <div className="w-full max-w-2xl">
+                    {/* Updated to enforce 16:9 aspect ratio */}
                     <ImageWithFallback 
                         src={url} 
                         alt={altText} 
-                        className="w-full h-auto rounded-xl shadow-premium-sm border border-gray-100"
+                        className="w-full aspect-video object-cover rounded-xl shadow-premium-sm border border-gray-100"
                     />
                   </div>
                   {altText && <p className="text-center text-sm text-brand-muted mt-3 italic max-w-lg">{altText}</p>}
@@ -207,11 +208,11 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
                 </div>
             </div>
 
-            {/* Featured Image - Optimized Size */}
+            {/* Featured Image - Optimized Size 16:9 */}
             <ImageWithFallback 
                 src={post.imageUrl} 
                 alt={post.title} 
-                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-premium-md mb-12"
+                className="w-full aspect-video object-cover rounded-2xl shadow-premium-md mb-12"
             />
 
             {/* Content Body */}

@@ -187,7 +187,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, sectionId }) => {
 
                         {/* Image Side (Compact & Designed) */}
                         <div className="lg:col-span-5 relative order-1 lg:order-2 mb-8 lg:mb-0">
-                             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 aspect-[4/3] lg:aspect-[4/3] w-full max-w-md mx-auto relative group">
+                             {/* Changed aspect-ratio to aspect-video (16:9) */}
+                             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 aspect-video w-full max-w-md mx-auto relative group">
                                  <div className="absolute inset-0 bg-brand-primary/10 group-hover:bg-transparent transition-colors z-10"></div>
                                  <ImageWithFallback
                                     src={featuredPost.imageUrl} 
@@ -223,7 +224,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, sectionId }) => {
                             onClick={() => onNavigate('POST', { id: post.id })}
                             className="group cursor-pointer flex flex-col h-full"
                         >
-                            <div className="aspect-[16/10] overflow-hidden rounded-2xl mb-6 relative shadow-premium-sm border border-gray-100">
+                            {/* Changed aspect-ratio to aspect-video (16:9) */}
+                            <div className="aspect-video overflow-hidden rounded-2xl mb-6 relative shadow-premium-sm border border-gray-100">
                                 <ImageWithFallback 
                                     src={post.imageUrl} 
                                     alt={post.title} 

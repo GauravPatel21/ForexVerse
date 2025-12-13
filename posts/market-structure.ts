@@ -22,6 +22,8 @@ Markets exist in three states:
 *   **BOS (Break of Structure):** When price closes beyond a previous structural high in an uptrend (or low in a downtrend), it confirms trend continuation.
 *   **CHoCH (Change of Character):** The first sign of a potential reversal. In an uptrend, this happens when price breaks below the last Higher Low.
 
+![Visual representation of Break of Structure vs Change of Character](https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&w=800&q=80)
+
 ## How to Apply It in Real Trading
 1.  **Identify the Current Range:** What is the most recent High and Low?
 2.  **Trade With the Flow:** If the market is printing Higher Highs, look exclusively for buy setups at Higher Lows.

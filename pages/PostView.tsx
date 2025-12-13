@@ -21,22 +21,53 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
     window.scrollTo(0, 0);
 
     if (post) {
+      // 1. Update Title
       document.title = `${post.title} | ForexVerse`;
       
-      // Dynamic SEO Meta Tags
-      const updateMeta = (name: string, content: string) => {
-        let element = document.querySelector(`meta[name="${name}"]`);
+      // 2. Helper to update Meta Tags
+      const setMeta = (selectorAttribute: string, selectorValue: string, content: string) => {
+        let element = document.querySelector(`meta[${selectorAttribute}="${selectorValue}"]`);
         if (!element) {
           element = document.createElement('meta');
-          element.setAttribute('name', name);
+          element.setAttribute(selectorAttribute, selectorValue);
           document.head.appendChild(element);
         }
         element.setAttribute('content', content);
       };
 
-      updateMeta('description', post.excerpt);
-      updateMeta('og:title', post.title);
-      updateMeta('og:description', post.excerpt);
+      // 3. Helper to update Link Tags (Canonical)
+      const setLink = (rel: string, href: string) => {
+        let element = document.querySelector(`link[rel="${rel}"]`);
+        if (!element) {
+            element = document.createElement('link');
+            element.setAttribute('rel', rel);
+            document.head.appendChild(element);
+        }
+        element.setAttribute('href', href);
+      };
+
+      const currentUrl = window.location.href;
+
+      // Standard SEO
+      setMeta('name', 'description', post.excerpt);
+      setMeta('name', 'keywords', post.tags.join(', ') + ', Forex, Price Action, Trading');
+      setMeta('name', 'author', 'ForexVerse Team');
+
+      // Open Graph (Facebook / LinkedIn)
+      setMeta('property', 'og:title', post.title);
+      setMeta('property', 'og:description', post.excerpt);
+      setMeta('property', 'og:image', post.imageUrl);
+      setMeta('property', 'og:url', currentUrl);
+      setMeta('property', 'og:type', 'article');
+
+      // Twitter Card
+      setMeta('name', 'twitter:card', 'summary_large_image');
+      setMeta('name', 'twitter:title', post.title);
+      setMeta('name', 'twitter:description', post.excerpt);
+      setMeta('name', 'twitter:image', post.imageUrl);
+
+      // Canonical URL (Prevents duplicate content issues)
+      setLink('canonical', currentUrl);
     }
   }, [id, post]);
 
@@ -67,13 +98,31 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
     window.open(url, '_blank', 'width=600,height=400');
   };
 
-  // Formatting content with refined prose styles
+  // Formatting content with refined prose styles & Image Support
   const renderContent = (content: string) => {
     // Basic Markdown parser
     return content.split('\n').map((line, idx) => {
       const trimmed = line.trim();
       if (!trimmed) return <div key={idx} className="h-4"></div>;
       
+      // --- IMAGE PARSING ---
+      // Syntax: ![Alt Text](URL)
+      const imageMatch = trimmed.match(/^!\[(.*?)\]\((.*?)\)/);
+      if (imageMatch) {
+          const altText = imageMatch[1];
+          const url = imageMatch[2];
+          return (
+              <div key={idx} className="my-10">
+                  <ImageWithFallback 
+                      src={url} 
+                      alt={altText} 
+                      className="w-full h-auto rounded-xl shadow-premium-sm border border-gray-100"
+                  />
+                  {altText && <p className="text-center text-sm text-brand-muted mt-3 italic">{altText}</p>}
+              </div>
+          );
+      }
+
       // Headings
       if (trimmed.startsWith('## ')) return <h2 key={idx} className="text-2xl md:text-3xl font-display font-bold text-brand-text mt-12 mb-6 tracking-tight">{trimmed.replace('## ', '')}</h2>;
       if (trimmed.startsWith('### ')) return <h3 key={idx} className="text-xl font-display font-bold text-brand-text mt-8 mb-4">{trimmed.replace('### ', '')}</h3>;
@@ -223,7 +272,7 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
             </div>
 
-            {/* GISCUS COMMENTS - FadeIn removed for safety, just using div wrapper if needed, but keeping Comments component logic intact */}
+            {/* GISCUS COMMENTS */}
             <div className="mt-8">
                 <Comments term={post.id} />
             </div>

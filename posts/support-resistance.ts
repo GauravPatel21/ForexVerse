@@ -7,7 +7,7 @@ export const post: Post = {
   date: 'Jan 08, 2025',
   readTime: '8 min read',
   tags: ['Structure', 'Analysis'],
-  imageUrl: 'https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80',
+  imageUrl: '/images/support-resistance.png',
   content: `
 ## Introduction
 Support and resistance are the most fundamental concepts in technical analysis, yet they are frequently misused. These are not exact numbers; they are zones where institutional order flow is likely to interact with price.
@@ -16,6 +16,8 @@ Support and resistance are the most fundamental concepts in technical analysis, 
 *   **Support:** A price area where demand (buying pressure) is strong enough to overcome supply, causing price to bounce.
 *   **Resistance:** A price area where supply (selling pressure) overcomes demand, causing price to drop.
 *   **The Flip:** When a resistance zone is broken, it often converts into support (and vice versa).
+
+![Support and Resistance Zones Example](/images/support-resistance-zones.png)
 
 ## Mechanics of the Zone
 Why do we use zones instead of lines?

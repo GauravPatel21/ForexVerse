@@ -7,7 +7,7 @@ export const post: Post = {
   date: 'Dec 13, 2025',
   readTime: '6 min read',
   tags: ['Strategy', 'Indicators', 'Scalping'],
-  imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80',
+  imageUrl: '/images/sma-crossover.png',
   content: `
 ## Introduction
 Moving Averages are among the oldest tools in technical analysis, but they often lag. Many traders try to trade simple "crossovers" blindly, which leads to losses during chopping markets.
@@ -19,6 +19,8 @@ This strategy relies on capturing short-term momentum shifts aligned with struct
 *   **Timeframe:** 5-Minute Chart (M5)
 *   **Fast MA:** 10 Simple Moving Average (SMA) - *Yellow*
 *   **Slow MA:** 20 Simple Moving Average (SMA) - *Purple*
+
+![SMA Crossover Chart Example](/images/sma-setup.png)
 
 ## The Logic
 The 10 SMA represents immediate momentum, while the 20 SMA represents the short-term trend.

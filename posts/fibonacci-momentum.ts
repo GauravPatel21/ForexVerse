@@ -42,7 +42,7 @@ Asset classes like Crypto and Stocks have a "Growth DNA"—they are inflationary
 *   **Signal:** We wait for the **89 EMA to cross ABOVE the 144 EMA**.
 *   **Confirmation:** Do not enter blindly at the cross. Wait for a candle close to confirm the new hierarchy.
 
-![Fibonacci Golden Cross Setup](/images/fib-ema-cross-setup.png)
+![Fibonacci Golden Cross Setup](/images/fib-setup.png)
 
 ### 3. Exit Logic (The Filter)
 The power of this strategy lies in the exit. We do not exit on a single red candle. We only exit when the logic invalidates:

@@ -7,13 +7,15 @@ export const post: Post = {
   date: 'Jan 05, 2025',
   readTime: '7 min read',
   tags: ['Price Action', 'Fundamentals'],
-  imageUrl: 'https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&w=1200&q=80', 
+  imageUrl: '/images/price-action-101.png', 
   content: `
 ## Introduction
 Price action is the discipline of making trading decisions based on the raw movement of price, rather than lagging indicators. It is the language of the market, reflecting the aggregate psychology and order flow of all participants at any given moment.
 
 ## Key Concept Overview
 Charts are often cluttered with moving averages, oscillators, and bands. While these tools calculate past data, they obscure the only truth in trading: the current price. By focusing on candlesticks and structure, a trader gains a direct line of sight into institutional intent.
+
+![Clean Price Action Chart](/images/price-action-clean.png)
 
 ## How It Works Mechanically
 Price moves due to an imbalance between supply (sellers) and demand (buyers).

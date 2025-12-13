@@ -7,7 +7,7 @@ export const post: Post = {
   date: 'Jan 12, 2025',
   readTime: '10 min read',
   tags: ['Market Structure', 'Trend'],
-  imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+  imageUrl: '/images/market-structure.png',
   content: `
 ## Introduction
 Market structure is the roadmap of price. It tells you the direction of the dominant trend and warns you when that trend is ending. Without understanding structure, you are navigating without a compass.
@@ -22,7 +22,7 @@ Markets exist in three states:
 *   **BOS (Break of Structure):** When price closes beyond a previous structural high in an uptrend (or low in a downtrend), it confirms trend continuation.
 *   **CHoCH (Change of Character):** The first sign of a potential reversal. In an uptrend, this happens when price breaks below the last Higher Low.
 
-![Visual representation of Break of Structure vs Change of Character](https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&w=800&q=80)
+![Visual representation of Break of Structure vs Change of Character](/images/market-structure-bos.png)
 
 ## How to Apply It in Real Trading
 1.  **Identify the Current Range:** What is the most recent High and Low?

@@ -7,7 +7,7 @@ export const post: Post = {
   date: 'Jan 15, 2025',
   readTime: '7 min read',
   tags: ['Liquidity', 'Institutional'],
-  imageUrl: 'https://images.unsplash.com/photo-1605792657660-596af9009e82?auto=format&fit=crop&w=1200&q=80',
+  imageUrl: '/images/liquidity-grabs.png',
   content: `
 ## Introduction
 Have you ever had a trade hit your stop loss, only to immediately reverse and go to your target? This is not bad luck, and the broker is not hunting you personally. This is a function of market liquidity.
@@ -20,6 +20,8 @@ Institutions need liquidity to enter large positions. Liquidity is simply a coll
 ## Mechanics of a Grab
 To buy a massive amount of currency, a bank needs a massive amount of sellers. Where are the sellers? They are the traders whose stop losses are sitting just below a support level.
 The market dips below support, triggers those sell orders (providing the bank with the liquidity they need to buy), and then reverses upward.
+
+![Liquidity Grab Schematic](/images/liquidity-grab-setup.png)
 
 ## How to Apply It in Real Trading
 1.  **Identify Obvious Stops:** Look at equal highs or equal lows. Ask yourself, "Where is everyone else hiding their stop loss?"

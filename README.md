@@ -21,6 +21,27 @@ This project uses a query-based router (`?page=POST`), which is 100% compatible 
     ```
 2.  Deploy the output folder (usually `dist` or `build`) to your `gh-pages` branch.
 
+## Content Management
+
+### Adding Screenshots to Posts
+To include your own charts or screenshots:
+
+1.  Place your image files in the `public/images/` folder.
+2.  In your post file (e.g., `posts/market-structure.ts`), reference the image using Markdown syntax.
+3.  **Important:** The image code must be on its own line.
+
+**Example:**
+```typescript
+content: `
+## Analysis
+Here is the H4 structure break:
+
+![H4 Structure Break](/images/h4-break.png)
+
+As you can see, the previous high was violated.
+`
+```
+
 ## Features
 - **Price Action Education**: Zero indicators, pure structure.
 - **Tools**: Pip calculator, session timings, charting.
@@ -33,3 +54,4 @@ This project uses a query-based router (`?page=POST`), which is 100% compatible 
 - `/components`: Reusable UI elements (Navbar, Comments, Icons)
 - `/data.ts`: All static content and article data.
 - `/types.ts`: TypeScript definitions.
+- `/public/images`: Directory for local blog images.

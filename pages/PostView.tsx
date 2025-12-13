@@ -25,6 +25,16 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
       document.title = `${post.title} | ForexVerse`;
       
       const currentUrl = window.location.href;
+      const origin = window.location.origin;
+
+      // Helper to ensure image URLs are absolute for SEO/Social Cards
+      const getAbsoluteUrl = (path: string) => {
+        if (!path) return '';
+        if (path.startsWith('http')) return path;
+        return `${origin}${path.startsWith('/') ? '' : '/'}${path}`;
+      };
+
+      const absoluteImageUrl = getAbsoluteUrl(post.imageUrl);
 
       // 2. Helper to update Meta Tags
       // type = 'name' (Twitter/Standard) or 'property' (OpenGraph)
@@ -57,7 +67,7 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
       // --- OPEN GRAPH (Facebook / LinkedIn) - Uses 'property' ---
       setMeta('property', 'og:title', post.title);
       setMeta('property', 'og:description', post.excerpt);
-      setMeta('property', 'og:image', post.imageUrl);
+      setMeta('property', 'og:image', absoluteImageUrl);
       setMeta('property', 'og:url', currentUrl);
       setMeta('property', 'og:type', 'article');
       setMeta('property', 'og:site_name', 'ForexVerse');
@@ -66,7 +76,7 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
       setMeta('name', 'twitter:card', 'summary_large_image');
       setMeta('name', 'twitter:title', post.title);
       setMeta('name', 'twitter:description', post.excerpt);
-      setMeta('name', 'twitter:image', post.imageUrl);
+      setMeta('name', 'twitter:image', absoluteImageUrl);
 
       // --- CANONICAL URL ---
       setLink('canonical', currentUrl);

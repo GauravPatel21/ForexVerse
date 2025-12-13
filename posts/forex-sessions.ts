@@ -7,7 +7,7 @@ export const post: Post = {
   date: 'Jan 20, 2025',
   readTime: '9 min read',
   tags: ['Sessions', 'Volatility', 'Time'],
-  imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80',
+  imageUrl: '/images/forex-sessions.png',
   content: `
 ## Introduction
 A common myth in trading is that "more hours equals more money." In Forex, the opposite is true. The market consists of three major sessions: Asian, London, and New York. Understanding the personality of each session is critical for your win rate.

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://forexverse.com/sitemap.xml
+Sitemap: https://forex-verse.vercel.app/sitemap.xml

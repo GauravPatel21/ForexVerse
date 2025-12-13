@@ -35,8 +35,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate, sectionId }) => {
     post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
   ).slice(0, 3);
 
+  // Logic: First post is featured, next 6 are in the grid
   const featuredPost = POSTS[0]; 
-  const latestPosts = POSTS.slice(0, 6);
+  const latestPosts = POSTS.slice(1, 7);
   const tags = Array.from(new Set(POSTS.flatMap(p => p.tags))).slice(0, 6);
 
   const scrollToSection = (id: string) => {

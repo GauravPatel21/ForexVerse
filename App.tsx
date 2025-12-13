@@ -5,6 +5,7 @@ import Loading from './components/Loading';
 import { RouteState, PageRoute } from './types';
 
 // Lazy Load Pages for Performance (Code Splitting)
+// Using explicit relative paths to ensure browser resolution works correctly
 const Home = React.lazy(() => import('./pages/Home'));
 const PostView = React.lazy(() => import('./pages/PostView'));
 const LegalView = React.lazy(() => import('./pages/LegalView'));

@@ -1,7 +1,7 @@
 /* TEAM */
   Creator: ForexVerse AI
   Tech: React, TypeScript, TailwindCSS
-  Site: https://forexverse.com
+  Site: https://forex-verse.vercel.app
 
 /* THANKS */
   Thanks to the Price Action trading community.

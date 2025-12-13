@@ -126,10 +126,9 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
 
   if (!post) {
     return (
-        <div className="min-h-screen flex items-center justify-center flex-col pt-32">
+        <div className="min-h-screen flex items-center justify-center flex-col">
             <h1 className="text-2xl font-bold text-brand-text mb-4">Post not found</h1>
-            <p className="text-brand-muted mb-8">The article you are looking for does not exist.</p>
-            <button onClick={() => onNavigate('HOME')} className="px-6 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-primary/90 transition-colors">Return Home</button>
+            <button onClick={() => onNavigate('HOME')} className="text-brand-primary hover:underline">Go Home</button>
         </div>
     );
   }
@@ -147,7 +146,7 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
             Back to Analysis
         </button>
 
-        <div className="animate-fade-up">
+        <FadeIn>
             {/* Header */}
             <div className="mb-10">
                 <div className="flex gap-2 mb-6">
@@ -223,11 +222,9 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
             </div>
 
-            {/* GISCUS COMMENTS - FadeIn removed for safety, just using div wrapper if needed, but keeping Comments component logic intact */}
-            <div className="mt-8">
-                <Comments term={post.id} />
-            </div>
-        </div>
+            {/* GISCUS COMMENTS */}
+            <Comments term={post.id} />
+        </FadeIn>
       </article>
     </div>
   );

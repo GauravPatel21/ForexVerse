@@ -4,8 +4,8 @@ export const post: Post = {
   id: 'forex-sessions',
   title: 'Market Sessions: Volatility is King',
   excerpt: 'The Forex market is open 24/5, but money is not made 24/5. Learn when to trade, when to wait, and why the London-New York overlap is the golden window.',
-  date: 'Jan 20, 2025',
-  readTime: '9 min read',
+  date: 'Dec 13, 2025',
+  readTime: '6 min read',
   tags: ['Sessions', 'Volatility', 'Time'],
   imageUrl: '/images/forex-sessions.png',
   content: `

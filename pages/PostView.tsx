@@ -24,12 +24,15 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
       // 1. Update Title
       document.title = `${post.title} | ForexVerse`;
       
+      const currentUrl = window.location.href;
+
       // 2. Helper to update Meta Tags
-      const setMeta = (selectorAttribute: string, selectorValue: string, content: string) => {
-        let element = document.querySelector(`meta[${selectorAttribute}="${selectorValue}"]`);
+      // type = 'name' (Twitter/Standard) or 'property' (OpenGraph)
+      const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
+        let element = document.querySelector(`meta[${attr}="${key}"]`);
         if (!element) {
           element = document.createElement('meta');
-          element.setAttribute(selectorAttribute, selectorValue);
+          element.setAttribute(attr, key);
           document.head.appendChild(element);
         }
         element.setAttribute('content', content);
@@ -46,27 +49,26 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
         element.setAttribute('href', href);
       };
 
-      const currentUrl = window.location.href;
-
-      // Standard SEO
+      // --- STANDARD SEO ---
       setMeta('name', 'description', post.excerpt);
       setMeta('name', 'keywords', post.tags.join(', ') + ', Forex, Price Action, Trading');
       setMeta('name', 'author', 'ForexVerse Team');
 
-      // Open Graph (Facebook / LinkedIn)
+      // --- OPEN GRAPH (Facebook / LinkedIn) - Uses 'property' ---
       setMeta('property', 'og:title', post.title);
       setMeta('property', 'og:description', post.excerpt);
       setMeta('property', 'og:image', post.imageUrl);
       setMeta('property', 'og:url', currentUrl);
       setMeta('property', 'og:type', 'article');
+      setMeta('property', 'og:site_name', 'ForexVerse');
 
-      // Twitter Card
+      // --- TWITTER CARD - Uses 'name' ---
       setMeta('name', 'twitter:card', 'summary_large_image');
       setMeta('name', 'twitter:title', post.title);
       setMeta('name', 'twitter:description', post.excerpt);
       setMeta('name', 'twitter:image', post.imageUrl);
 
-      // Canonical URL (Prevents duplicate content issues)
+      // --- CANONICAL URL ---
       setLink('canonical', currentUrl);
     }
   }, [id, post]);

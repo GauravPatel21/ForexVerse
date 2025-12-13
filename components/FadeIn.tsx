@@ -19,7 +19,7 @@ const FadeIn: React.FC<FadeInProps> = ({ children, delay = 0, className = '' }) 
         }
       },
       {
-        threshold: 0.1,
+        threshold: 0, // Changed from 0.1 to 0 to ensure it triggers for large elements
         rootMargin: '50px'
       }
     );

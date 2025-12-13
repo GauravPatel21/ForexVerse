@@ -5,8 +5,10 @@ import { post as marketStructure } from './market-structure';
 import { post as liquidityGrabs } from './liquidity-grabs';
 import { post as smaStrategy } from './sma-crossover-strategy';
 import { post as forexSessions } from './forex-sessions';
+import { post as fibMomentum } from './fibonacci-momentum';
 
 export const POSTS: Post[] = [
+  fibMomentum,
   forexSessions,
   smaStrategy,
   priceAction101,

@@ -21,65 +21,22 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
     window.scrollTo(0, 0);
 
     if (post) {
-      // 1. Update Title
       document.title = `${post.title} | ForexVerse`;
       
-      const currentUrl = window.location.href;
-      const origin = window.location.origin;
-
-      // Helper to ensure image URLs are absolute for SEO/Social Cards
-      const getAbsoluteUrl = (path: string) => {
-        if (!path) return '';
-        if (path.startsWith('http')) return path;
-        return `${origin}${path.startsWith('/') ? '' : '/'}${path}`;
-      };
-
-      const absoluteImageUrl = getAbsoluteUrl(post.imageUrl);
-
-      // 2. Helper to update Meta Tags
-      // type = 'name' (Twitter/Standard) or 'property' (OpenGraph)
-      const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
-        let element = document.querySelector(`meta[${attr}="${key}"]`);
+      // Dynamic SEO Meta Tags
+      const updateMeta = (name: string, content: string) => {
+        let element = document.querySelector(`meta[name="${name}"]`);
         if (!element) {
           element = document.createElement('meta');
-          element.setAttribute(attr, key);
+          element.setAttribute('name', name);
           document.head.appendChild(element);
         }
         element.setAttribute('content', content);
       };
 
-      // 3. Helper to update Link Tags (Canonical)
-      const setLink = (rel: string, href: string) => {
-        let element = document.querySelector(`link[rel="${rel}"]`);
-        if (!element) {
-            element = document.createElement('link');
-            element.setAttribute('rel', rel);
-            document.head.appendChild(element);
-        }
-        element.setAttribute('href', href);
-      };
-
-      // --- STANDARD SEO ---
-      setMeta('name', 'description', post.excerpt);
-      setMeta('name', 'keywords', post.tags.join(', ') + ', Forex, Price Action, Trading');
-      setMeta('name', 'author', 'ForexVerse Team');
-
-      // --- OPEN GRAPH (Facebook / LinkedIn) - Uses 'property' ---
-      setMeta('property', 'og:title', post.title);
-      setMeta('property', 'og:description', post.excerpt);
-      setMeta('property', 'og:image', absoluteImageUrl);
-      setMeta('property', 'og:url', currentUrl);
-      setMeta('property', 'og:type', 'article');
-      setMeta('property', 'og:site_name', 'ForexVerse');
-
-      // --- TWITTER CARD - Uses 'name' ---
-      setMeta('name', 'twitter:card', 'summary_large_image');
-      setMeta('name', 'twitter:title', post.title);
-      setMeta('name', 'twitter:description', post.excerpt);
-      setMeta('name', 'twitter:image', absoluteImageUrl);
-
-      // --- CANONICAL URL ---
-      setLink('canonical', currentUrl);
+      updateMeta('description', post.excerpt);
+      updateMeta('og:title', post.title);
+      updateMeta('og:description', post.excerpt);
     }
   }, [id, post]);
 
@@ -110,7 +67,7 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
     window.open(url, '_blank', 'width=600,height=400');
   };
 
-  // Formatting content with refined prose styles & Image Support
+  // Formatting content with refined prose styles
   const renderContent = (content: string) => {
     // Basic Markdown parser
     return content.split('\n').map((line, idx) => {
@@ -124,17 +81,19 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
           const altText = imageMatch[1];
           const url = imageMatch[2];
           return (
-              <div key={idx} className="my-10">
-                  <ImageWithFallback 
-                      src={url} 
-                      alt={altText} 
-                      className="w-full h-auto rounded-xl shadow-premium-sm border border-gray-100"
-                  />
-                  {altText && <p className="text-center text-sm text-brand-muted mt-3 italic">{altText}</p>}
+              <div key={idx} className="my-10 flex flex-col items-center">
+                  <div className="w-full max-w-2xl">
+                    <ImageWithFallback 
+                        src={url} 
+                        alt={altText} 
+                        className="w-full h-auto rounded-xl shadow-premium-sm border border-gray-100"
+                    />
+                  </div>
+                  {altText && <p className="text-center text-sm text-brand-muted mt-3 italic max-w-lg">{altText}</p>}
               </div>
           );
       }
-
+      
       // Headings
       if (trimmed.startsWith('## ')) return <h2 key={idx} className="text-2xl md:text-3xl font-display font-bold text-brand-text mt-12 mb-6 tracking-tight">{trimmed.replace('## ', '')}</h2>;
       if (trimmed.startsWith('### ')) return <h3 key={idx} className="text-xl font-display font-bold text-brand-text mt-8 mb-4">{trimmed.replace('### ', '')}</h3>;
@@ -208,7 +167,8 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
             Back to Analysis
         </button>
 
-        <div className="animate-fade-up">
+        {/* Removed FadeIn wrapper here to prevent visibility issues with long content */}
+        <div>
             {/* Header */}
             <div className="mb-10">
                 <div className="flex gap-2 mb-6">
@@ -285,9 +245,7 @@ const PostView: React.FC<PostViewProps> = ({ id, onNavigate }) => {
             </div>
 
             {/* GISCUS COMMENTS */}
-            <div className="mt-8">
-                <Comments term={post.id} />
-            </div>
+            <Comments term={post.id} />
         </div>
       </article>
     </div>
